@@ -16,22 +16,29 @@ import vttp2022.ssf.assessment.videosearch.service.SearchService;
 @RequestMapping(path="/search")
 public class SearchController {
 
-    @Autowired SearchService searchSvc;
+    @Autowired 
+    private SearchService searchSvc;
 
     // http://localhost:8080/search?search_name=abc&number_of_results=5
 
     @GetMapping
     public String gameSearch(@RequestParam(name="search_name") String searchName, 
-            @RequestParam(name="number_of_results", defaultValue="10") Integer numOfResults, Model model)
+            @RequestParam(name="number_of_result", defaultValue="10") Integer numOfResults, Model model)
         {
 
+            System.out.printf(">>> %s\n", searchName);
+            System.out.printf(">>> %d\n", numOfResults);
+            
             List<Game> listOfGames = searchSvc.search(searchName, numOfResults);
+
             if (listOfGames.isEmpty())
                 return "empty";
 
             model.addAttribute("search_name", searchName);
-            model.addAttribute("number_of_results", numOfResults);
-            model.addAttribute("game", List.of());
+            model.addAttribute("number_of_result", numOfResults);
+            model.addAttribute("games", listOfGames);
+
+            System.out.println(">>>>>>>> Game List: " + listOfGames);
 
             return "game";
         }
