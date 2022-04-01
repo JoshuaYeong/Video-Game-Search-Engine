@@ -26,8 +26,8 @@ public class SearchController {
             @RequestParam(name="number_of_result", defaultValue="10") Integer numOfResults, Model model)
         {
 
-            System.out.printf(">>> %s\n", searchName);
-            System.out.printf(">>> %d\n", numOfResults);
+            // System.out.printf(">>> %s\n", searchName);
+            // System.out.printf(">>> %d\n", numOfResults);
             
             List<Game> listOfGames = searchSvc.search(searchName, numOfResults);
 

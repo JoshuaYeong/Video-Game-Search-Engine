@@ -44,7 +44,7 @@ public class SearchService {
         .accept(MediaType.APPLICATION_JSON)
         .build();
 
-        System.out.println("This is the req: " + req);
+        // System.out.println("This is the req: " + req);
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -60,10 +60,9 @@ public class SearchService {
             JsonObject data = reader.readObject();
             JsonArray jArray = data.getJsonArray("results");
 
-            Game game = new Game();
-
             for (int i=0; i<jArray.size(); i++)
             {
+                Game game = new Game();
                 JsonObject arrObject = jArray.getJsonObject(i);
                 String name = arrObject.getString("name");
                 Float rating = Float.parseFloat(arrObject.getJsonNumber("rating").toString());
