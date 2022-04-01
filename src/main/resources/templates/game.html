@@ -16,18 +16,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
     <body>
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col" style="float: left; width: 50px;" >
-                    <table>
-                        <td>
-                            <h3>Title: <span data-th-text="${game.name}"></span></h3>
-                            <div>
-                                <h4>Rating: <span data-th-value="${game.rating}"></span></h4>
-                            </div>
-                        </td>
-                    </table>
-            </div>
-        </div>
+            <table>
+                <tr data-th-each="game : ${games}">
+                    <td data-th-text="${game.name}"></td>
+                    <td data-th-value="${game.rating}"></td>
+                    <td data-th-src="${game.backgroundImage}"></td>
+                </tr>
+            </table>
     </body>
 </html>
